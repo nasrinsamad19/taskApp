@@ -30,7 +30,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
     return  Scaffold(
       appBar: AppBar(
       
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.blue,
         elevation: 0.0,
         centerTitle: true,
         title: Text(
@@ -42,15 +42,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
           ),
         ),
         
-         actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add),
-            color: Colors.white,
-            tooltip: 'Comment Icon',
-            onPressed: () {},
-          ), //IconButton
-           //IconButton
-        ],
+    
         
         
       ),
@@ -178,6 +170,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
             BlocBuilder<TaskBloc, TaskState>(
                 builder: (context, state) {
                   return ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor:Colors.blue,),
                       onPressed: () {
                         if (taskName.text.isNotEmpty &&
                             taskDes.text.isNotEmpty) {
@@ -185,6 +178,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                                 AddTask(
                                   title: taskName.text,
                                   description: taskDes.text,
+                                  empName: selectedEmployeeName
                                 ),
                               );
                           ScaffoldMessenger.of(context)
@@ -202,13 +196,16 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                           ));
                         }
                       },
-                      child: const Text('Add Task'));
+                      child: const Text('SUBMIT',style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                color: Colors.white)));
                 },
               ),
             
           ],
         ),
       ),
-    );
+   );
   }
 }

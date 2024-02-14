@@ -10,24 +10,27 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   TaskBloc() : super(TaskInitial()) {
         List<Task> tasks = [];
 
-    on<TaskEvent>((event, emit) async {
-      if(event is AddTask){
+    on<AddTask>((event, emit) async {
+      
          await DatabaseService.instance.create(
         Task(
           title: event.title,
           description: event.description,
+          empName: event.empName
         ),
-      ).then((value) => emit);
+      );
 
-      } else if( event is GetTask){
-        tasks = await DatabaseService.instance.readAllTasks();
-      emit(ListTasks(task: tasks));
-      } else if (event is DeleteTask){
-         await DatabaseService.instance.delete(id: event.id);
-      add(const GetTask());
-      }
       
     });
+    on<GetTask>((event, emit) async {
+      tasks = await DatabaseService.instance.readAllTasks();
+      emit(ListTasks(task: tasks));
+    });
+    on<DeleteTask>((event, emit) async {
+       await DatabaseService.instance.delete(id: event.id);
+      add(const GetTask());
+    });
+
   }
  
 

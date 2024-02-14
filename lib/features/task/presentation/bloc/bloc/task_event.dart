@@ -7,15 +7,17 @@ abstract class TaskEvent extends Equatable {
 class AddTask extends TaskEvent {
   final String title;
   final String description;
+  final String empName;
 
   const AddTask(
       {required this.title,
       required this.description,
+      required this.empName
     });
 
   @override
   List<Object?> get props =>
-      [title,description];
+      [title,description,empName];
 }
 
 

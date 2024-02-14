@@ -22,16 +22,14 @@ class DatabaseService {
   }
 
   Future _createDB(Database db, int version) async {
-    // const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    // const textType = 'TEXT NOT NULL';
-    // const boolType = 'BOOLEAN NOT NULL';
-    // const integerType = 'INTEGER NOT NULL';
+                     
 
     await db.execute('''
-CREATE TABLE todos ( 
+CREATE TABLE task ( 
   _id INTEGER PRIMARY KEY AUTOINCREMENT, 
   title TEXT NOT NULL,
   description NOT NULL,
+  empName NOT NULL
   )
 ''');
   }
