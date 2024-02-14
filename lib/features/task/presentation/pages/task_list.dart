@@ -151,6 +151,27 @@ class _TaskListPageState extends State<TaskListPage> {
                   ],
                 ),
               ),
+               IconButton(
+                                                  onPressed: () {
+                                                    context
+                                                        .read<TaskBloc>()
+                                                        .add(DeleteTask(
+                                                            id: state
+                                                                .task[index].id!));
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                            const SnackBar(
+                                                      duration: Duration(
+                                                          milliseconds: 500),
+                                                      content:
+                                                          Text("Task deleted"),
+                                                    ));
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.delete,
+                                                    color: Colors.red,
+                                                  ))
              
              
             ],
